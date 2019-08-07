@@ -23,9 +23,9 @@ public class WishListTest {
     public void addProductToWishlistNotLoggedIn() {
         driver = new ChromeDriver();
         driver.get("https://fasttrackit.org/selenium-test/");
-        WebElement saleButton = driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-5.parent > a"));
+        WebElement saleButton = driver.findElement(By.cssSelector("#header [class*='nav-5'] [class='level0 has-children']"));
         saleButton.click();
-        driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(1) > div > div.actions > ul > li:nth-child(1) > a")).click();
+        driver.findElement(By.cssSelector("[class^='products-grid'] .item:first-child .link-wishlist")).click();
 
         WebElement loginTitle = driver.findElement(By.cssSelector(".page-title"));
         Assert.assertEquals("LOGIN OR CREATE AN ACCOUNT",loginTitle.getText());
@@ -33,23 +33,23 @@ public class WishListTest {
     @Test
     public void addProductToWishListLoggedIn() {
         driver.get("https://fasttrackit.org/selenium-test/");
-        WebElement accountButton = driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label"));
+        WebElement accountButton = driver.findElement(By.cssSelector("[data-target-element='#header-account'] .label"));
         accountButton.click();
 
-        WebElement loginLink = driver.findElement(By.cssSelector("#header-account > div > ul > li.last > a"));
+        WebElement loginLink = driver.findElement(By.cssSelector("[title='Log In']"));
         loginLink.click();
 
         driver.findElement(By.cssSelector("#email")).sendKeys("alina.moraru.qa@gmail.com");
         driver.findElement(By.cssSelector("#pass")).sendKeys("Pass23");
         driver.findElement(By.cssSelector("#send2")).click();
 
-        WebElement saleButton = driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-5.parent > a"));
+        WebElement saleButton = driver.findElement(By.cssSelector("#header [class*='nav-5'] [class='level0 has-children']"));
         saleButton.click();
 
 
-        driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(1) > div > div.actions > ul > li:nth-child(1) > a")).click();
+        driver.findElement(By.cssSelector("[class^='products-grid'] .item:first-child .link-wishlist")).click();
 
-        WebElement myWishlist = driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col2-left-layout > div > div.col-main > div.my-account > div.my-wishlist > div > h1"));
+        WebElement myWishlist = driver.findElement(By.cssSelector(".page-title"));
 
         Assert.assertEquals("MY WISHLIST",myWishlist.getText());
 

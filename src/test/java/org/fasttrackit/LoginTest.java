@@ -25,10 +25,10 @@ public class LoginTest {
 
 
         driver.get("https://fasttrackit.org/selenium-test/");
-        WebElement accountButton = driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label"));
+        WebElement accountButton = driver.findElement(By.cssSelector("[data-target-element='#header-account'] .label"));
         accountButton.click();
 
-        WebElement loginLink = driver.findElement(By.cssSelector("#header-account > div > ul > li.last > a"));
+        WebElement loginLink = driver.findElement(By.cssSelector("[title='Log In']"));
         loginLink.click();
 
         driver.findElement(By.cssSelector("#email")).sendKeys("alina.moraru.qa@gmail.com");
